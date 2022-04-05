@@ -1,4 +1,4 @@
-package capitulo_17;
+package capitulo_17.encerramento;
 
 public class MinhaThread extends Thread{
 
