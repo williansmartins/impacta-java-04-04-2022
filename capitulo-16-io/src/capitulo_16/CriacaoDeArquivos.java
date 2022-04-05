@@ -1,25 +1,21 @@
+package capitulo_16;
+
 import java.io.DataOutputStream;
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class CriacaoDePastas {
+public class CriacaoDeArquivos {
 	public static void main(String[] args) {
-		File pasta = new File("pasta3");
+		System.out.println("Olá Mundo!");
 		
-		if(!pasta.exists()) {
-			pasta.mkdir();
-			System.out.println("gerou a pasta!");
-		}
-		
+		//criacao de arquivo (servidor)
 		try {
-			FileOutputStream arquivo = new FileOutputStream("pasta3/arquivoX.txt");
+			FileOutputStream arquivo = new FileOutputStream("pasta1/arquivoX.jpg");
 			DataOutputStream dados = new DataOutputStream(arquivo);
 			dados.writeChars("IMPACTA");
 			System.out.println("gerou arquivo!");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 	}
 }
