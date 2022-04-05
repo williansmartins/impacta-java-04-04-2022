@@ -1,6 +1,6 @@
 package capitulo_17.encerramento;
 
-import capitulo_17.MinhaThread;
+import capitulo_17.threadv1Extends.MinhaThread;
 
 public class TesteEncerramento {
 	public static void main(String[] args) {

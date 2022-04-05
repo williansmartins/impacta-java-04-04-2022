@@ -1,11 +1,11 @@
-package capitulo_17;
+package capitulo_17.encerramento;
 
-public class MinhaThread extends Thread{
+public class ThreadEncerramento extends Thread{
 
 	private String nome;
 	private int tempo;
 
-	public MinhaThread(String nome, int tempo) {
+	public ThreadEncerramento(String nome, int tempo) {
 		super();
 		this.nome = nome;
 		this.tempo = tempo;

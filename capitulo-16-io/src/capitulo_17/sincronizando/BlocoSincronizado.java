@@ -1,4 +1,4 @@
-package capitulo_17;
+package capitulo_17.sincronizando;
 
 
 public class BlocoSincronizado {

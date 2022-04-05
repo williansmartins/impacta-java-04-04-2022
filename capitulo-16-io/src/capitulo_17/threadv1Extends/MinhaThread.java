@@ -1,22 +1,23 @@
-package capitulo_17;
+package capitulo_17.threadv1Extends;
 
-public class MinhaSegundaThread implements Runnable{
+public class MinhaThread extends Thread{
 
 	private String nome;
+	private int tempo;
 
-	public MinhaSegundaThread(String nome) {
+	public MinhaThread(String nome, int tempo) {
+		super();
 		this.nome = nome;
-		Thread t = new Thread(this);
-		t.start();
+		this.tempo = tempo;
 	}
 	
 	@Override
 	public void run() {
 		
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 10; i++) {
 			System.out.println("Rodando thread: " + this.nome + "-" + i);
 			try {
-				Thread.sleep(100);
+				Thread.sleep(tempo);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

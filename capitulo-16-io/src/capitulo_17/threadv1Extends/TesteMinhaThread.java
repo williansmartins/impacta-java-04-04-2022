@@ -1,6 +1,6 @@
-package capitulo_17;
+package capitulo_17.threadv1Extends;
 
-public class TesteFinalizacao {
+public class TesteMinhaThread {
 
 	public static void main(String[] args) {
 		MinhaThread thread = new MinhaThread("#Thread1", 100);
