@@ -10,7 +10,7 @@ public class CriacaoDeArquivos {
 		
 		//criacao de arquivo (servidor)
 		try {
-			FileOutputStream arquivo = new FileOutputStream("pasta1/arquivoX.jpg");
+			FileOutputStream arquivo = new FileOutputStream("arquivo.txt");
 			DataOutputStream dados = new DataOutputStream(arquivo);
 			dados.writeChars("IMPACTA");
 			System.out.println("gerou arquivo!");

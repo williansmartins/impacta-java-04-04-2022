@@ -1,3 +1,4 @@
+.classpath
+**/*.jar
 .DS_Store
-*.class
 target/
