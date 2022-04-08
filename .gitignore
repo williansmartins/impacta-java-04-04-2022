@@ -2,3 +2,6 @@
 **/*.jar
 .DS_Store
 target/
+.project
+.settings/
+bin/
