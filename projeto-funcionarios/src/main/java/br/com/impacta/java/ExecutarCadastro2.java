@@ -7,7 +7,7 @@ import br.com.impacta.java.dao.DAOException;
 import br.com.impacta.java.dao.FuncionarioDAO;
 import br.com.impacta.java.model.Funcionario;
 
-public class ExecutarCadastro {
+public class ExecutarCadastro2 {
 
 	static FuncionarioDAO dao = new FuncionarioDAO();
 	static Funcionario funcionario = new Funcionario();
@@ -33,24 +33,19 @@ public class ExecutarCadastro {
 	}
 	
 	static void perguntar()throws DAOException {
-		String opcao = "";
+		System.out.println("O que gostaria de fazer?");
+		System.out.println("1) Inserir um funcionário");
+		System.out.println("2) Buscar um funcionário");
+		int opcao = sc.nextInt();
 		
-		while(!(opcao.equals("1") || opcao.equals("2"))) {
-			System.out.println("O que gostaria de fazer?");
-			System.out.println("1) Inserir um funcionário");
-			System.out.println("2) Buscar um funcionário");
-			opcao = sc.nextLine();
-
-		}
-
-		if(opcao.equals("1")) {
+		if(opcao==1) {
 			inserirFuncionario();
-		}
-		
-		if(opcao.equals("2")) {
+		}if(opcao==2) {
 			buscarFuncionario();
+		}else {
+			System.out.println("Opção inválida");
+			perguntar();
 		}
-		
 	}
 	
 	static void inserirFuncionario() throws DAOException{
