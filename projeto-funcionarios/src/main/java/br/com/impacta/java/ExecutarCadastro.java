@@ -35,10 +35,11 @@ public class ExecutarCadastro {
 	static void perguntar()throws DAOException {
 		String opcao = "";
 		
-		while(!(opcao.equals("1") || opcao.equals("2"))) {
+		while(!(opcao.equals("1") || opcao.equals("2") || opcao.equals("3"))) {
 			System.out.println("O que gostaria de fazer?");
 			System.out.println("1) Inserir um funcionário");
 			System.out.println("2) Buscar um funcionário");
+			System.out.println("3) Encerrar o programa");
 			opcao = sc.nextLine();
 
 		}
@@ -49,6 +50,10 @@ public class ExecutarCadastro {
 		
 		if(opcao.equals("2")) {
 			buscarFuncionario();
+		}
+		
+		if(opcao.equals("3")) {
+			System.out.println("Encerrando o programa...");
 		}
 		
 	}
