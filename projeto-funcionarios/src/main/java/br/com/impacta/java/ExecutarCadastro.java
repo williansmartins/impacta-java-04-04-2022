@@ -16,13 +16,35 @@ public class ExecutarCadastro {
 	public static void main(String[] args) {
 		
 		try {
-//			inserirFuncionario();
-			buscarFuncionario();
-			
+			perguntar();
 		} catch (DAOException e) {
 			e.printStackTrace();
 		} finally {
-			sc.close();
+//			sc.close();
+		}
+		
+//		try {
+//			inserirFuncionario();
+//		} catch (DAOException e) {
+//			e.printStackTrace();
+//		} finally {
+//			sc.close();
+//		}
+	}
+	
+	static void perguntar()throws DAOException {
+		System.out.println("O que gostaria de fazer?");
+		System.out.println("1) Inserir um funcionário");
+		System.out.println("2) Buscar um funcionário");
+		int opcao = sc.nextInt();
+		
+		if(opcao==1) {
+			inserirFuncionario();
+		}if(opcao==2) {
+			buscarFuncionario();
+		}else {
+			System.out.println("Opção inválida");
+			perguntar();
 		}
 	}
 	
@@ -43,6 +65,7 @@ public class ExecutarCadastro {
 		dao.persist(funcionario);
 		
 		System.out.println("Funcionário cadastrado com sucesso!");
+		perguntar();
 	}
 	
 	static void buscarFuncionario() throws DAOException {
@@ -57,6 +80,7 @@ public class ExecutarCadastro {
 			System.out.println("Foram encontrado(s) " + list.size() + " funcionário(s)");
 			System.out.println(list);			
 		}
+		perguntar();
 	}
 
 }
