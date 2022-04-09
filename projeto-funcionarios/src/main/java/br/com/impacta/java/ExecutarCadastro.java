@@ -12,8 +12,8 @@ public class ExecutarCadastro {
 		Funcionario funcionario = new Funcionario();
 		funcionario.setCargoId(1);
 //		funcionario.setId(1);
-		funcionario.setNome("Willians Martins");
-		funcionario.setSalario(20000);
+		funcionario.setNome("Luis Miguel Martins");
+		funcionario.setSalario(50000);
 		
 		try {
 			dao.persist(funcionario);

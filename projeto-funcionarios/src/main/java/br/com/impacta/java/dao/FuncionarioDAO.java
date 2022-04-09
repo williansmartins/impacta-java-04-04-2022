@@ -16,8 +16,9 @@ public class FuncionarioDAO {
 	private final String URL = "jdbc:mysql://localhost:3306/impacta";
 	private final String USER = "root";
 	private final String PASSWORD = "password";
-	
+
 	private PreparedStatement ps;
+	private Connection con;
 
 	private Connection getConnection() throws DAOException {
 		try {
@@ -28,22 +29,40 @@ public class FuncionarioDAO {
 		}
 	}
 
-	private void closeResources(Connection cn, Statement st, ResultSet rs) {
+	private void closeResources(Connection cn, Statement st, ResultSet rs) throws DAOException {
+		if (rs != null) {
+			try {
+				rs.close();
+			} catch (SQLException e) { throw new DAOException(e);}
+		}
+		if (st != null) {
+			try {
+				st.close();
+			} catch (SQLException e) { throw new DAOException(e);}
+		}
+		if (cn != null) {
+			try {
+				cn.close();
+			} catch (SQLException e) { throw new DAOException(e);}
+		}
 
 	}
 
 	public void persist(Funcionario func) throws DAOException {
 		String querie = "INSERT INTO tab_func (func_name, func_rmnt_val, role_code) VALUES (?, ?, ?)";
-		
+
 		try {
-			ps = getConnection().prepareStatement(querie);
+			con = getConnection();
+			ps = con.prepareStatement(querie);
 			ps.setString(1, func.getNome());
 			ps.setDouble(2, func.getSalario());
 			ps.setInt(3, func.getCargoId());
-			
-			ps.executeUpdate();			
+
+			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			closeResources(con, ps, null);
 		}
 	}
 
@@ -53,5 +72,5 @@ public class FuncionarioDAO {
 //		WHERE func_name LIKE ?
 		return null;
 	}
-	
+
 }
