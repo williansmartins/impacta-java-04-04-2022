@@ -27,7 +27,7 @@ public class FuncionarioDAO {
 			return DriverManager.getConnection(URL, USER, PASSWORD);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DAOException(e);
+			throw new DAOException("Erro ao tentar fazer a conexao", e);
 		}
 	}
 
@@ -63,7 +63,7 @@ public class FuncionarioDAO {
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DAOException(e);
+			throw new DAOException("Erro ao tentar inserir um funcionario", e);
 		} finally {
 			closeResources(con, ps, null);
 		}
@@ -97,7 +97,7 @@ public class FuncionarioDAO {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DAOException(e);
+			throw new DAOException("Erro ao buscar um funcionario", e);
 		}finally {
 			closeResources(con, ps, rs);
 		}
