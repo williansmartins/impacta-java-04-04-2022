@@ -39,4 +39,11 @@ public class Funcionario {
 		this.cargoId = cargoId;
 	}
 
+	@Override
+	public String toString() {
+		return "Funcionario [id=" + id + ", nome=" + nome + ", salario=" + salario + ", cargoId=" + cargoId + "]";
+	}
+	
+	
+
 }

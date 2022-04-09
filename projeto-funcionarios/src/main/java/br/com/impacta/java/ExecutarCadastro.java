@@ -1,5 +1,7 @@
 package br.com.impacta.java;
 
+import java.util.List;
+
 import br.com.impacta.java.dao.DAOException;
 import br.com.impacta.java.dao.FuncionarioDAO;
 import br.com.impacta.java.model.Funcionario;
@@ -16,7 +18,9 @@ public class ExecutarCadastro {
 		funcionario.setSalario(50000);
 		
 		try {
-			dao.persist(funcionario);
+//			dao.persist(funcionario);
+			List<Funcionario> list = dao.findByName("felipe");
+			System.out.println(list);
 		} catch (DAOException e) {
 			e.printStackTrace();
 		}

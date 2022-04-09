@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.impacta.java.model.Funcionario;
@@ -19,6 +20,7 @@ public class FuncionarioDAO {
 
 	private PreparedStatement ps;
 	private Connection con;
+	private ResultSet rs;
 
 	private Connection getConnection() throws DAOException {
 		try {
@@ -49,11 +51,11 @@ public class FuncionarioDAO {
 	}
 
 	public void persist(Funcionario func) throws DAOException {
-		String querie = "INSERT INTO tab_func (func_name, func_rmnt_val, role_code) VALUES (?, ?, ?)";
+		String query = "INSERT INTO tab_func (func_name, func_rmnt_val, role_code) VALUES (?, ?, ?)";
 
 		try {
 			con = getConnection();
-			ps = con.prepareStatement(querie);
+			ps = con.prepareStatement(query);
 			ps.setString(1, func.getNome());
 			ps.setDouble(2, func.getSalario());
 			ps.setInt(3, func.getCargoId());
@@ -61,16 +63,45 @@ public class FuncionarioDAO {
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new DAOException(e);
 		} finally {
 			closeResources(con, ps, null);
 		}
 	}
 
 	public List<Funcionario> findByName(String nome) throws DAOException {
-//		SELECT func_code, func_name, func_rmnt_val, role_code
-//		FROM tab_func
-//		WHERE func_name LIKE ?
-		return null;
+		String query = "SELECT func_code, func_name, func_rmnt_val, role_code " + 
+		"FROM tab_func " +
+		"WHERE func_name LIKE ?";
+		
+		try {
+			con = getConnection();
+			ps = con.prepareStatement(query);
+			ps.setString(1, "%"+nome+"%");
+			
+			rs = ps.executeQuery();
+			
+			ArrayList<Funcionario> lista = new ArrayList<Funcionario>();
+			
+			while(rs.next()) {
+				Funcionario f = new Funcionario();
+				f.setId(rs.getInt(1));
+				f.setNome(rs.getString(2));
+				f.setSalario(rs.getDouble(3));
+				f.setCargoId(rs.getInt(4));
+				
+				lista.add(f);
+			}
+			
+			return lista;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException(e);
+		}finally {
+			closeResources(con, ps, rs);
+		}
+		
 	}
 
 }
